@@ -12,9 +12,17 @@
 [2,1,1,1]形式的二级Tab,数字代表页面的状态
 ### TODO
  - [x] 目录
- - [ ] 代码
- - [ ] 点击tab页面自动刷新
-
+ - [x] 代码
+ - [x] 点击tab页面自动刷新
+ - [ ] `HomeRoot.js`中`Navigator`的作用
+ 
+### 点击tab页面自动刷新
+`FollowListPage.js`和`RecommendListPage.js`中
+```
+  componentWillReceiveProps(nextProps) {
+    this.onRefresh();
+  }
+```
 ### 目录
 ```
 |--index.ios.js
