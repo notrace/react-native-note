@@ -1,24 +1,19 @@
-# react-native-note
-使用react-native开发app的笔记
-
-## TODO
- - [ ] Tab
- - [ ] 保存认证数据
- - [ ] 根据认证数据跳转页面
- - [ ] 组织redux
- - [ ] 环信-最近会话列表
-
-## Tab
+#Tab
 [2,1,1,1]形式的二级Tab,数字代表页面的状态
-### TODO
+## TODO
  - [x] 目录
  - [x] 代码
  - [x] 点击tab页面自动刷新
- - [x] 点击跳转页面
- - [x] `HomeRoot.js`中`Navigator`的作用
- - [x] webview 跳转和返回
-
-### 目录
+ - [ ] `HomeRoot.js`中`Navigator`的作用
+ 
+## 点击tab页面自动刷新
+`FollowListPage.js`和`RecommendListPage.js`中
+```
+  componentWillReceiveProps(nextProps) {
+    this.onRefresh();
+  }
+```
+## 目录
 ```
 |--index.ios.js
   |-- js/root
@@ -33,7 +28,7 @@
           |-- js/pages/me
           |-- js/easemob/Containers/ContactsScreen
 ```
-### 代码
+## 代码
 `js/pages/HomeRoot.js`
 ```
 import React, { Component } from 'react';
@@ -181,85 +176,3 @@ export default class SecondPageHome extends Component {
 }
 
 ```
-### 点击tab页面自动刷新
-`FollowListPage.js`和`RecommendListPage.js`中
-```
-  componentWillReceiveProps(nextProps) {
-    this.onRefresh();
-  }
-```
-
-### 点击跳转页面
-如果不在tab页面上，需要传递props
-```
-<CompanyCell {...this.props} />
-```
-
-```
-import ProjectItem from './ProjectItem';
-```
-```
-  _clickToPage(id, url) {
-    const {navigator} = this.props;
-    if(navigator) {
-      navigator.push({
-        index: 1,
-        component: ProjectItem,
-        title: 'Home',
-        params: {
-          id: id,
-        }
-      })
-    }
-  }
-```
-因为跳转页面不在tab中，所以需要添加返回方法
-```
- onBack() {
-    this.props.navigator.pop();
-  }
-```
-### `HomeRoot.js`中`Navigator`的作用
-为了`点击跳转页面`
-### WebView 跳转和返回
-使用WebView的时候需要添加onNavigationStateChange
-```
-import {
-  StyleSheet,
-  TouchableOpacity,
-  View,
-  WebView,
-} from 'react-native';
-const WEBVIEW_REF = 'webview';
-```
-```
-  <WebView
-    ref={WEBVIEW_REF}
-    bounces={false}
-    scalesPageToFit={true}
-    startInLoadingState={true}
-    onNavigationStateChange={(e)=>this.onNavigationStateChange(e)}
-    onMessage={this.handleMessage}
-    source={{uri: ABOUT_ME_URL}}/>
-```
-```
-  onNavigationStateChange(navState) {
-    this.setState({
-      canGoBack: navState.canGoBack,
-    });
-  }
-```
-如果点击跳转的页面是WebView,那么返回方法需要判断两种状态，native页面和web页面
-```
-  onBack() {
-    if (this.state.canGoBack) {
-      this.refs[WEBVIEW_REF].goBack();
-    } else {
-      this.props.navigator.pop();
-    }
-  }
-```
-## 保存认证数据
-## 根据认证数据跳转页面
-## 环信
-## 组织redux
