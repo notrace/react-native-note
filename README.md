@@ -17,7 +17,7 @@
  - [x] [点击tab页面自动刷新](#点击tab页面自动刷新)
  - [x] [点击跳转页面](#点击跳转页面)
  - [x] [`HomeRoot.js`中`Navigator`的作用](#`HomeRoot.js`中`Navigator`的作用)
- - [x] [webview 跳转和返回](#webview 跳转和返回)
+ - [x] [webview跳转和返回](#webview 跳转和返回)
 
 ### 文件目录
 ```
@@ -222,7 +222,7 @@ import ProjectItem from './ProjectItem';
 ```
 ### `HomeRoot.js`中`Navigator`的作用
 为了`点击跳转页面`
-### WebView 跳转和返回
+### WebView跳转和返回
 使用WebView的时候需要添加onNavigationStateChange
 ```
 import {
